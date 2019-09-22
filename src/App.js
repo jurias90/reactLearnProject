@@ -1,25 +1,27 @@
+/** @jsx jsx */
 import React from 'react';
-import logo from './logo.svg';
+import NavBar from './NavBar.js';
+import FormBody from "./FormBody.js";
+import ProductBody from './ProductBody.js';
+import SearchBarBody from './SearchBarBody.js';
+import WelcomeBody from './WelcomeBody.js';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {css, jsx} from "@emotion/core";
 import './App.css';
+
+const resetMargin = css`margin: 0px, padding:0px;`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className={resetMargin}>
+        <NavBar />
+        <Route exact path="/" component={WelcomeBody} />
+        <Route path='/register' component={FormBody} />
+        <Route path='/search' component={SearchBarBody} />
+        <Route path='/products' component={ProductBody} />
+      </div>
+    </Router>
   );
 }
 
